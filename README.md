@@ -2,8 +2,7 @@
 
 This repository is DEPRECATED and not maintained anymore. Fork and use at your own risk.
 
-It is superseded by edubadges-server. See https://github.com/edubadges/edubadges-server.
-
+It is superseded by edubadges-server. See <https://github.com/edubadges/edubadges-server>.
 
 ![Edubadges](logo.png)
 
@@ -33,6 +32,7 @@ Badgr was developed by [Concentric Sky](https://concentricsky.com), starting in 
 # Edubadges Install Instructions (Backend Docker and Database containers on CentOS 7)
 
 These sample instructions will build 2 Docker images:
+
 * the edubadges backend django web container
 * the MySQL database container
 
@@ -52,7 +52,6 @@ Example directory structure to build the edubadges server (backend) Docker conta
     │   ├── Dockerfile
     │   └── entrypoint
     └── example-build-script.sh
-
 
 ## The config directory layout
 
@@ -76,24 +75,22 @@ Create a directory to store the local config files. I.e.:
         ├── nginx_badgr.conf
         └── nginx.conf
 
-
 ## Build the Docker container
 
 Example build routine using the included Dockerfile, docker-compose.yml and first_build.sh script:
 
-    $ cd /var/docker/edubadges/badgr-server/badgr
-    $ git clone --single-branch -b master https://github.com/edubadges/badgr-server
-    $ cd /var/docker/edubadges/badgr-server/badgr/badgr-server
-    $ git submodule init
-    $ git submodule update
-    $ cd /var/docker/edubadges
-    $ sh first_build.sh
-    $ docker-compose up -d
-
+    cd /var/docker/edubadges/badgr-server/badgr
+    git clone --single-branch -b master https://github.com/edubadges/badgr-server
+    cd /var/docker/edubadges/badgr-server/badgr/badgr-server
+    git submodule init
+    git submodule update
+    cd /var/docker/edubadges
+    sh first_build.sh
+    docker-compose up -d
 
 # Original Badgr installation instructions
 
-## How to get started on your local development environment.
+## How to get started on your local development environment
 
 Prerequisites:
 
@@ -103,12 +100,12 @@ Prerequisites:
 * mysql
 * [cairo](https://www.cairographics.org/download/) (SVG utility)
 
-#### Optional extras:
+#### Optional extras
 
 * memcached
 * amqp broker (e.g. RabbitMQ)
 
-#### System-specific requirements:
+#### System-specific requirements
 
 * OS X: [XCode Command line tools](http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x/)
 * Ubuntu 12.04 (install packages with apt-get): git, git-core, python-virtualenv, gcc, python-pip, python-devel, libjpeg-turbo, libjpeg-turbo-devel, zlib-devel, mariadb-devel, openldap-devel, cyrus-sasl-devel, swig, libxslt-devel, automake, autoconf, libtool, libffi-devel
@@ -154,13 +151,14 @@ badgr
 * `./manage.py dist` - generate docs swagger file(s)
 * `./manage.py createsuperuser` - follow prompts to create your first admin user account
 
-
 ### Prvovision database
 
 * Login the admin interface of the server and:
+
 1) Add a badgeuser_termsversion
 2) Add a socialaccount_socialapp for edu_id and surf_conext (with these names)
-- Make sure the SITE_ID defined in your settings file (SITE_ID = 1) matches yours in the database
+
+* Make sure the SITE_ID defined in your settings file (SITE_ID = 1) matches yours in the database
 
 ### Install and run Badgr UI {#badgr-ui}
 
@@ -174,17 +172,18 @@ For more details view the Readme for [Badgr UI](https://github.com/edubadges/bad
 ### Run a server locally for development
 
 * `./manage.py runserver`
-* Navigate to http://localhost:8000/staff
+* Navigate to <http://localhost:8000/staff>
 * Sign in as your superuser you created above
 
 API documentation is viewable at `/docs`
 
 #### Badgr App Configuration
 
-* Sign in to http://localhost:8000/staff
+* Sign in to <http://localhost:8000/staff>
 * View the "Badgr app" records and use the staff admin forms to create a BadgrApp. BadgrApp(s) describe the configuration that badgr-server needs to know about an associated installation of badgr-ui.
 
-If your badgr-ui is running on http://localhost:4000, use the following values:
+If your badgr-ui is running on <http://localhost:4000>, use the following values:
+
 * CORS: ensure this setting matches the domain on which you are running badgr-ui, including the port if other than the standard HTTP or HTTPS ports. `localhost:4000`
 * Signup redirect: `http://localhost:4000/signup/`
 * Email confirmation redirect: `http://localhost:4000/auth/login/`
@@ -199,41 +198,42 @@ If your badgr-ui is running on http://localhost:4000, use the following values:
 * *Sign-In Configuration**
 
 * [Create an oAuth2 Provider Application](http://localhost:8000/staff/oauth2_provider/application/add/) with
-    * Client id: `public`
-    * Client type: Public
-    * allowed scopes: `rw:profile rw:issuer rw:backpack`
-    * Authorization grant type: Resource owner password-based
-    * Name: `localdev`
-    * Redirect uris: `http://localhost:4000`
+  * Client id: `public`
+  * Client type: Public
+  * allowed scopes: `rw:profile rw:issuer rw:backpack`
+  * Authorization grant type: Resource owner password-based
+  * Name: `localdev`
+  * Redirect uris: `http://localhost:4000`
 
 * *User Configuration**
 
 * [Edit your super user](http://localhost:8000/staff/badgeuser/badgeuser/1/change/)
-    * Add an email address, check "verified" and "primary"
+  * Add an email address, check "verified" and "primary"
 
 * [Create an oAuth2 Provider Application](http://localhost:8000/staff/oauth2_provider/application/add/) with
-    * Client id: `public`
-    * Client type: Public
-    * allowed scopes: `rw:profile rw:issuer rw:backpack`
-    * Authorization grant type: Resource owner password-based
-    * Name: `localdev`
-    * Redirect uris: `http://localhost:4000`
+  * Client id: `public`
+  * Client type: Public
+  * allowed scopes: `rw:profile rw:issuer rw:backpack`
+  * Authorization grant type: Resource owner password-based
+  * Name: `localdev`
+  * Redirect uris: `http://localhost:4000`
 
 ### Additional configuration options
 
 Set these values in your settings_local.py file to configure the application to your specific needs. Required options are listed in bold.
+
 * *HELP_EMAIL* (Required)
-  - An email address for your support staff.
+  * An email address for your support staff.
 * BADGR_APPROVED_ISSUERS_ONLY:
-  - If you choose to use the BADGR_APPROVED_ISSUERS_ONLY flag, this means new user accounts will not be able to define new issuers (though they can be added as staff on issuers defined by others) unless they have the Django user permission 'issuer.add_issuer'. The recommended way to grant users this privilege is to create a group that grants it in the `/staff` admin area and addthe appropriate users to that group.
+  * If you choose to use the BADGR_APPROVED_ISSUERS_ONLY flag, this means new user accounts will not be able to define new issuers (though they can be added as staff on issuers defined by others) unless they have the Django user permission 'issuer.add_issuer'. The recommended way to grant users this privilege is to create a group that grants it in the `/staff` admin area and addthe appropriate users to that group.
 * GOOGLE_ANALYTICS_ID:
-  - Google Analytics code will be inserted into your pages if this is set to your account tracking code, e.g. 'UA-3929083373-2'. See https://support.google.com/analytics/answer/1008080
+  * Google Analytics code will be inserted into your pages if this is set to your account tracking code, e.g. 'UA-3929083373-2'. See <https://support.google.com/analytics/answer/1008080>
 * PINGDOM_MONITORING_ID:
-  - If you use Pingdom to monitor site performance, including this setting will embed Pingdom tracking script into the header.
+  * If you use Pingdom to monitor site performance, including this setting will embed Pingdom tracking script into the header.
 * CELERY_ALWAYS_EAGER = True
-  - Celery is an asynchronous task runner built into Django and Badgr. Advanced deployments may separate celery workers from web nodes for improved performance. For development environments where Celery tasks should run synchronously, set this flag to true. Very few tasks are part of this repository, and eager is a safe setting for most production deploys.
+  * Celery is an asynchronous task runner built into Django and Badgr. Advanced deployments may separate celery workers from web nodes for improved performance. For development environments where Celery tasks should run synchronously, set this flag to true. Very few tasks are part of this repository, and eager is a safe setting for most production deploys.
 * OPEN_FOR_SIGNUP = True
 
-  - This defaults to True, but allows you to turn off signup if you would like to use Badgr for only single-account use or to manually create all users in `/staff`.
+  * This defaults to True, but allows you to turn off signup if you would like to use Badgr for only single-account use or to manually create all users in `/staff`.
 * PAGINATION_SECRET_KEY:
-  - Key used for symmetrical encryption of pagination cursors.  If not defined, encryption is disabled.  Must be 32 byte, base64-encoded random string.  For example: python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key())"
+  * Key used for symmetrical encryption of pagination cursors.  If not defined, encryption is disabled.  Must be 32 byte, base64-encoded random string.  For example: python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key())"
